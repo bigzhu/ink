@@ -185,10 +185,11 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 	contentStr = ReplaceRootFlag(contentStr)
 	markdownStr := strings.SplitN(contentStr, CONFIG_SPLIT, 2)
 	contentLen := len(markdownStr)
-	if contentLen > 0 {
-		configStr = markdownStr[0]
+	if contentLen == 1 {
+		content = markdownStr[0]
 	}
 	if contentLen > 1 {
+		configStr = markdownStr[0]
 		content = markdownStr[1]
 	}
 	if len(configStr) == 0 { // 没有写 config 的情况
@@ -199,6 +200,8 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 			// Error(err.Error())
 			// return nil, ""
 			config = DefaultArticleConfig(markdownPath)
+			// 解析出错, 说明没有config, 要保证 content 完整
+			content = contentStr
 		}
 	}
 	// 支持老的 - status: draft 设置
