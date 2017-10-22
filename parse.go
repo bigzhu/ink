@@ -101,6 +101,9 @@ func DefaultArticleConfig(markdownPath string) (config *ArticleConfig) { // 返�
 	extension := filepath.Ext(file)
 	file = file[0 : len(file)-len(extension)]
 	config.Title = file
+	if file == "index" || file == "search" {
+		config.Draft = true
+	}
 
 	// date 用 mod time
 	fi, _ := os.Stat(markdownPath)
@@ -197,6 +200,10 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 			// return nil, ""
 			config = DefaultArticleConfig(markdownPath)
 		}
+	}
+	// 支持老的 - status: draft 设置
+	if strings.Contains(content, "- status: draft") {
+		return nil, ""
 	}
 	if config == nil {
 		return nil, ""
