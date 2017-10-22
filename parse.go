@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"os"
@@ -94,6 +93,24 @@ const (
 	MORE_SPLIT   = "<!--more-->"
 )
 
+func DefaultArticleConfig(markdownPath string) (config *ArticleConfig) { // 返回默认的 ArticleConfig
+	config = new(ArticleConfig)
+
+	// titile 用文件名
+	file := filepath.Base(markdownPath)
+	extension := filepath.Ext(file)
+	file = file[0 : len(file)-len(extension)]
+	config.Title = file
+
+	// date 用 mod time
+	fi, _ := os.Stat(markdownPath)
+	config.Date = fi.ModTime().Format("2006-01-02 15:04:05 +0800")
+
+	// 作者默认本人
+	config.Author = "me"
+	return config
+}
+
 func ParseMarkdown(markdown string) template.HTML {
 	// html.UnescapeString
 	return template.HTML(blackfriday.MarkdownCommon([]byte(markdown)))
@@ -172,26 +189,13 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 		content = markdownStr[1]
 	}
 	if len(configStr) == 0 { // 没有写 config 的情况
-		config = new(ArticleConfig)
-
-		// titile 用文件名
-		file := filepath.Base(markdownPath)
-		extension := filepath.Ext(file)
-		file = file[0 : len(file)-len(extension)]
-		config.Title = file
-
-		// date 用 mod time
-		fi, _ := os.Stat(markdownPath)
-		config.Date = fi.ModTime().Format("2006-01-02 15:04:05 +0800")
-
-		// 作者默认本人
-		config.Author = "me"
-		fmt.Printf("bigzhu %v end-bigzhu\n", config.Date)
+		config = DefaultArticleConfig(markdownPath)
 	} else {
 		// Parse config content
 		if err := yaml.Unmarshal([]byte(configStr), &config); err != nil {
-			Error(err.Error())
-			return nil, ""
+			// Error(err.Error())
+			// return nil, ""
+			config = DefaultArticleConfig(markdownPath)
 		}
 	}
 	if config == nil {
