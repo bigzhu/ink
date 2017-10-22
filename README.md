@@ -1,3 +1,6 @@
+## bigzhu modify
+if no yaml config in markdown file, use file name and modify time
+
 ## Introduce
 
 InkPaper is an static blog generator developed by Golang, No dependencies, Cross platform, Easy use, Fast build, Elegant theme.
@@ -126,6 +129,7 @@ Docker Build (Example)
 
 ## Change Log
 
+- [2017-10-22] if no yaml config in markdown file, use file name and modify time. modify by bigzhu
 - [2017-02-25] Fix bugs and merge some PRs
 - [2016-07-11] Fix bugs and merge many PRs
 - [2015-08-15] Bug fix, support RSS feed, improve theme

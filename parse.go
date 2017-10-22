@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 	"time"
@@ -33,7 +35,7 @@ type AuthorConfig struct {
 }
 
 type BuildConfig struct {
-	Output	string
+	Output  string
 	Port    string
 	Watch   bool
 	Copy    []string
@@ -122,7 +124,7 @@ func ParseGlobalConfig(configPath string, develop bool) *GlobalConfig {
 	if config.Site.Url != "" && strings.HasSuffix(config.Site.Url, "/") {
 		config.Site.Url = strings.TrimSuffix(config.Site.Url, "/")
 	}
-	if (config.Build.Output == "") {
+	if config.Build.Output == "" {
 		config.Build.Output = "public"
 	}
 	// Parse Theme Config
@@ -169,10 +171,28 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 	if contentLen > 1 {
 		content = markdownStr[1]
 	}
-	// Parse config content
-	if err := yaml.Unmarshal([]byte(configStr), &config); err != nil {
-		Error(err.Error())
-		return nil, ""
+	if len(configStr) == 0 { // 没有写 config 的情况
+		config = new(ArticleConfig)
+
+		// titile 用文件名
+		file := filepath.Base(markdownPath)
+		extension := filepath.Ext(file)
+		file = file[0 : len(file)-len(extension)]
+		config.Title = file
+
+		// date 用 mod time
+		fi, _ := os.Stat(markdownPath)
+		config.Date = fi.ModTime().Format("2006-01-02 15:04:05 +0800")
+
+		// 作者默认本人
+		config.Author = "me"
+		fmt.Printf("bigzhu %v end-bigzhu\n", config.Date)
+	} else {
+		// Parse config content
+		if err := yaml.Unmarshal([]byte(configStr), &config); err != nil {
+			Error(err.Error())
+			return nil, ""
+		}
 	}
 	if config == nil {
 		return nil, ""
