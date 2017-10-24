@@ -53,13 +53,15 @@ func (v Collections) Less(i, j int) bool {
 	case Article:
 		article1 := v[i].(Article)
 		article2 := v[j].(Article)
-		if article1.Top && !article2.Top {
-			return true
-		} else if !article1.Top && article2.Top {
-			return false
-		} else {
-			return article1.Date > article2.Date
-		}
+		// top 的判断是有问题的, 先取消
+		return article1.Date > article2.Date
+		// if article1.Top && !article2.Top {
+		// 	return true
+		// } else if !article1.Top && article2.Top {
+		// 	return false
+		// } else {
+		// 	return article1.Date > article2.Date
+		// }
 	case Archive:
 		return v[i].(Archive).Year > v[j].(Archive).Year
 	case Tag:
@@ -185,6 +187,8 @@ func Build() {
 	// Generate article list pages by tag
 	for tagName, articles := range tagMap {
 		wg.Add(1)
+		// tag 页也要排序
+		sort.Sort(articles)
 		go RenderArticleList(filepath.Join("tag", tagName), articles, tagName)
 	}
 	// Generate archive page
