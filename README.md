@@ -1,5 +1,6 @@
 ## bigzhu modify
-if no yaml config in markdown file, use file name and modify time
+* 没有设置 title 时, 取文件名做 title
+* if no yaml config in markdown file, use file name and modify time
 
 ## Introduce
 

@@ -93,13 +93,17 @@ const (
 	MORE_SPLIT   = "<!--more-->"
 )
 
-func DefaultArticleConfig(markdownPath string) (config *ArticleConfig) { // 返回默认的 ArticleConfig
-	config = new(ArticleConfig)
-
+func getFileName(markdownPath string) string { // 根据路径取文件名, 用作 title
 	// titile 用文件名
 	file := filepath.Base(markdownPath)
 	extension := filepath.Ext(file)
 	file = file[0 : len(file)-len(extension)]
+	return file
+}
+func DefaultArticleConfig(markdownPath string) (config *ArticleConfig) { // 返回默认的 ArticleConfig
+	config = new(ArticleConfig)
+
+	file := getFileName(markdownPath)
 	config.Title = file
 	if file == "index" || file == "search" {
 		config.Draft = true
@@ -221,6 +225,9 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 		content = strings.Replace(content, MORE_SPLIT, "", 1)
 	} else {
 		config.Preview = ParseMarkdown(string(config.Preview))
+	}
+	if config.Title == "" { //如果没有 Title 取文件名做 title
+		config.Title = getFileName(markdownPath)
 	}
 	return config, content
 }
