@@ -229,6 +229,9 @@ func ParseArticleConfig(markdownPath string) (config *ArticleConfig, content str
 	if config.Title == "" { //如果没有 Title 取文件名做 title
 		config.Title = getFileName(markdownPath)
 	}
+	if config.Author == "" { //如果没有 Author 默认为 me
+		config.Author = "me"
+	}
 	return config, content
 }
 

@@ -1,4 +1,5 @@
 ## bigzhu modify
+* 如果没有 Author 默认为 me
 * 没有设置 title 时, 取文件名做 title
 * if no yaml config in markdown file, use file name and modify time
 
