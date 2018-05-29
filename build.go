@@ -186,6 +186,7 @@ func Build() {
 	go RenderArticleList("", visibleArticles, "")
 	// Generate article list pages by tag
 	for tagName, articles := range tagMap {
+		sort.Sort(articles)
 		wg.Add(1)
 		// tag 页也要排序
 		sort.Sort(articles)
