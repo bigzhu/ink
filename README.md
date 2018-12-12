@@ -7,14 +7,14 @@
 
 InkPaper is an static blog generator developed by Golang, No dependencies, Cross platform, Easy use, Fast build, Elegant theme.
 
-[![release](https://img.shields.io/badge/release-v2017--02--25-blue.svg)](http://www.chole.io/)
+[![release](https://img.shields.io/badge/release-v2018--07--27-blue.svg)](http://www.chole.io/)
 [![apm](https://img.shields.io/badge/license-CC%20BY--NC%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 
 
 ![InkPaper - An Elegant Static Blog Generator](template/source/images/example-en.png)
 
 ### Quick Start
-- Download & Extract [Ink](http://www.chole.io/)，Run `ink preview`
+- Download & Extract [Ink](https://imeoer.github.io/)，Run `ink preview`
 
   > Tips：Linux/macOS, use `./ink preview`
 
@@ -132,6 +132,7 @@ Docker Build (Example)
 ## Change Log
 
 - [2017-10-22] if no yaml config in markdown file, use file name and modify time. modify by bigzhu
+- [2018-07-27] Adds ink new command
 - [2017-02-25] Fix bugs and merge some PRs
 - [2016-07-11] Fix bugs and merge many PRs
 - [2015-08-15] Bug fix, support RSS feed, improve theme
@@ -146,7 +147,7 @@ Docker Build (Example)
 
 ## They are using
 
-- [http://www.chole.io/blog/](http://www.chole.io/blog/)
+- [https://imeoer.github.io/blog/](https://imeoer.github.io/blog/)
 - [http://blog.hyper.sh/](http://blog.hyper.sh/)
 - [http://wangxu.me/](http://wangxu.me/)
 - [http://whzecomjm.com/](http://whzecomjm.com/)
