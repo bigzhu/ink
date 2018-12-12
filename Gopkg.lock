@@ -3,68 +3,106 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:6f4b0fee52501a8435d6a1e9225a105a8fae2883975b5410bfee4f5b1eb0fe0a"
   name = "github.com/InkProject/ink.go"
   packages = ["."]
+  pruneopts = "UT"
   revision = "86de6d066e8db5a3c6cd45f5b4a5282ac3d4105b"
 
 [[projects]]
+  digest = "1:39c2113f3a89585666e6f973650cff186b2d06deb4aa202c88addb87b0a201db"
   name = "github.com/bigzhu/blackfriday"
   packages = ["."]
+  pruneopts = "UT"
   revision = "cadec560ec52d93835bf2f15bd794700d3a2473b"
   source = "https://github.com/bigzhu/blackfriday"
   version = "v2.0.0"
 
 [[projects]]
+  digest = "1:b24d38b282bacf9791408a080f606370efa3d364e4b5fd9ba0f7b87786d3b679"
   name = "github.com/codegangsta/cli"
   packages = ["."]
+  pruneopts = "UT"
   revision = "cfb38830724cc34fedffe9a2a29fb54fa9169cd1"
   version = "v1.20.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:2e2599c4a2f4230239f4fcc5d3eb508e00ff69ecf9a0f3cd7cf7c9f42a3dde3b"
   name = "github.com/facebookgo/symwalk"
   packages = ["."]
+  pruneopts = "UT"
   revision = "42004b9f322246749dd73ad71008b1f3160c0052"
 
 [[projects]]
+  digest = "1:abeb38ade3f32a92943e5be54f55ed6d6e3b6602761d74b4aab4c9dd45c18abd"
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
+  pruneopts = "UT"
   revision = "c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9"
   version = "v1.4.7"
 
 [[projects]]
+  digest = "1:2b418e5e28a68ccab236a22f344140cebab2d90c3a4a3f5593ecbb82cfe0e5ce"
   name = "github.com/gorilla/feeds"
   packages = ["."]
+  pruneopts = "UT"
   revision = "6edcbcd2d57fd0bbd7f39947a593ed0c06648388"
   version = "v1.1.0"
 
 [[projects]]
+  digest = "1:43dd08a10854b2056e615d1b1d22ac94559d822e1f8b6fcc92c1a1057e85188e"
   name = "github.com/gorilla/websocket"
   packages = ["."]
+  pruneopts = "UT"
   revision = "ea4d1f681babbce9545c9c5f3d5194a789c89f5b"
   version = "v1.2.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:def689e73e9252f6f7fe66834a76751a41b767e03daab299e607e7226c58a855"
   name = "github.com/shurcooL/sanitized_anchor_name"
   packages = ["."]
+  pruneopts = "UT"
   revision = "86672fcb3f950f35f2e675df2240550f2a50762f"
 
 [[projects]]
   branch = "master"
+  digest = "1:ff6779fc8e010cfeddd11c28e55bd5108038578cf418f985909c5f804579c04a"
+  name = "github.com/taadis/oper"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "a899daa20181bd0517300585ec236252076d591e"
+
+[[projects]]
+  branch = "master"
+  digest = "1:fcf2b18db0af0f60d58e71ae8ed15555d46fdca3fc2529f65a14cef30ced981f"
   name = "golang.org/x/sys"
   packages = ["unix"]
+  pruneopts = "UT"
   revision = "c11f84a56e43e20a78cee75a7c034031ecf57d1f"
 
 [[projects]]
+  digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
+  pruneopts = "UT"
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
   version = "v2.2.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fe4ebdf49c68daf4f1fa307439f7436ab4d58787a5470e49f0d8faba81c99655"
+  input-imports = [
+    "github.com/InkProject/ink.go",
+    "github.com/bigzhu/blackfriday",
+    "github.com/codegangsta/cli",
+    "github.com/facebookgo/symwalk",
+    "github.com/fsnotify/fsnotify",
+    "github.com/gorilla/feeds",
+    "github.com/gorilla/websocket",
+    "github.com/taadis/oper",
+    "gopkg.in/yaml.v2",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
